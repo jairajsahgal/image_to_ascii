@@ -1,4 +1,7 @@
 import PIL.Image
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+import time
 
 ASCII_CHARACTERS = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", "."]
 
@@ -22,11 +25,14 @@ def conversion_of_pixels_to_ascii(image):
 
 
 def main(new_width=100):
-	path=input("Enter the path for the image:\n")
+	Tk().withdraw()
+	print("Please select your file")
+	time.sleep(1)
+	path=askopenfilename()
 	try:
 		image=PIL.Image.open(path)
 	except:
-		print(path,"is not a valid pathname")
+		print(path,"is not a valid file")
 
 	data_new_image=conversion_of_pixels_to_ascii(turn_image_to_grey(change_image_size(image)))
 
